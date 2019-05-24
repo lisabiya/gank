@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gank/net/HttpRequest.dart';
 import 'package:gank/bean/GanHo.dart';
+import 'package:gank/bean/Wan.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,8 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
   List<BingInfo> bingList = new List();
 
   void _incrementCounter() {
-    getHappy((ganho) {
-      initBing(ganho.happyList);
+    getHappy((ganHo) {
+      initBing(ganHo.happyList);
+    }, page);
+
+    getArticle((wan) {
+      initWan(wan.data.datas);
     }, page);
   }
 
@@ -53,6 +58,17 @@ class _MyHomePageState extends State<MyHomePage> {
     for (Happy happy in happyList) {
       BingInfo info =
           BingInfo(happy.url, happy.desc, happy.createdAt, happy.who, happy.id);
+      bingList.add(info);
+    }
+    setState(() {});
+  }
+
+  void initWan(List<Article> articleList) {
+    if (page == 1) bingList.clear();
+    page++;
+    for (Article article in articleList) {
+      BingInfo info = BingInfo(article.envelopePic, article.niceDate,
+          article.desc, article.author, null);
       bingList.add(info);
     }
     setState(() {});
@@ -150,7 +166,7 @@ class BingInfo extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                text4,
+                text4 == null ? "添加" : text4,
                 style: TextStyle(color: Colors.black54, fontSize: 16.0),
               ),
             ),
