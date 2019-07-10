@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List<BingInfo> bingList = new List();
 
   void _incrementCounter() {
-    getHappy((ganHo) {
-      initBing(ganHo.happyList);
-    }, page);
+//    getHappy((ganHo) {
+//      initBing(ganHo.happyList);
+//    }, page);
 
     getArticle((wan) {
       initWan(wan.data.datas);
@@ -91,7 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: '请求',
-        child: Icon(Icons.add),
+        backgroundColor: Colors.amberAccent,
+        child: Icon(
+          Icons.cloud_download,
+          color: Colors.white,
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
