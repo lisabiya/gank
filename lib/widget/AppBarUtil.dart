@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gank/route/Router.dart';
 
 typedef onChangeTitle(bool change);
 
-AppBar getAppBar(String mTitle, onChangeTitle onchange) {
+AppBar getAppBar(BuildContext context, String mTitle, onChangeTitle onchange) {
   return AppBar(
     title: Center(child: Text(mTitle)),
     centerTitle: true,
     leading: IconButton(
       icon: Icon(Icons.home, color: Colors.white),
-      onPressed: null,
+      onPressed: () {
+        Router.goPage(context, Router.home);
+      },
     ),
     actions: <Widget>[SwitchDemo(false, onchange)],
   );

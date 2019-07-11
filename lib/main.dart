@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar(widget.title, (change) {
+      appBar: getAppBar(context, widget.title, (change) {
         isShow = change;
         showDialogs(context, "播放开心的内容:${isShow ? "开启" : "关闭"}");
         if (!isShow) {
